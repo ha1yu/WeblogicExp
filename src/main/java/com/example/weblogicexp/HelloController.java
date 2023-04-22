@@ -1,5 +1,6 @@
 package com.example.weblogicexp;
 
+import com.example.weblogicexp.VulInfo.VulNames;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -62,13 +63,28 @@ public class HelloController {
         baseInfoOutPut.appendText("RMI: " + rmiUrl + "\n");
         baseInfoOutPut.appendText("JRMP: " + jrmpUrl + "\n");
         baseInfoOutPut.appendText("DNSLog: " + dnsLogURL + "\n");
-        List<String> checkVulsName = new ArrayList<>();
+        List<String> vulNameForCheck = new ArrayList<>(); // 最终检查的漏洞名称
+        // 获取所有的漏洞名称
         if(vulNameCheck.contains("ALL_ECHO")){
-            checkVulsName.add();
+            VulNames vulNames = new VulNames();
+            for (int i=1; i<vulNames.getAllVulNames().size(); i++){
+                vulNameForCheck.add(vulNames.getAllVulNames().get(i));
+            }
+        }else {
+            vulNameForCheck.add(vulNameCheck);
         }
-
-        baseInfoOutPut.appendText("VULName: " + vulNameCheck + "\n");
+//        baseInfoOutPut.appendText("VULName: " + vulNameCheck + "\n");
         baseInfoOutPut.appendText("[*] 参数解析完成，开始检测漏洞...");
+        //...
+    }
+
+    /*
+    * 批量检测
+    *
+    */
+    @FXML
+    private void ImportFileOfTargets(){
+
 
     }
 }
